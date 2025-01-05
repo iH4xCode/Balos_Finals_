@@ -1,0 +1,182 @@
+
+
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+
+nav{
+  width: 100%;
+  color:#fff;
+  background-color: #4287f5;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap:80px;
+}
+
+ul{
+  display: flex;
+  gap:15px;
+
+
+
+
+}
+
+ul li{
+  list-style: none;
+
+
+}
+
+ul li a{
+color: #ffffff;
+text-decoration: none;
+font-size: 25px;
+font-family: Arial;
+
+
+}
+
+
+.logo{
+  color:#ffffff;
+  font-size: 35px;
+  text-decoration: none;
+  margin-left: 40px;
+  font-family: Verdana;
+}
+
+
+
+
+
+.logo {
+  height: 300px;
+  width: auto;
+}
+
+.btn-login{
+  display: flex;
+  width: 60%;
+  gap: 20px;
+  justify-content: flex-end;
+
+}
+
+
+
+
+.btn-1:hover{
+   background-color:#d08128 ;
+
+
+}
+
+
+
+.btn-2{
+  font-size: 20px;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background-color: #ea8a1d;
+  color:white;
+  cursor: pointer ;
+  font-family: verdana;
+ transition: 0.5s;
+}
+
+
+
+.btn-2:hover{
+  background-color:#d08128 ;
+
+}
+
+.login-a{
+  color:white;
+  font-family: verdana;
+  text-decoration: none;
+  font-size: 20px;
+  margin-top: 12px;
+  margin-right: 10px;
+}
+
+.pet-1{
+  color:#0a8ae3;
+  font-weight: bold;
+  font-size: 50px;
+font-family: Arial;
+}
+
+.petbox{
+
+  height: 240px;
+  width: 30%;
+margin-top: 15%;
+}
+
+.p-text{
+  font-size: 22px;
+
+
+font-family: Calibri;
+}
+
+
+
+.petbox-2{
+  width: 40%;
+  margin-top: 180px;
+
+}
+
+.petpic{
+  height:80%;
+
+}
+
+
+.pet-container{
+   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: 100vh;
+
+
+}
+
+.lol{
+    color:red;
+    font-size: blue;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-entry {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+.product-entry h2 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.product-entry p {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
