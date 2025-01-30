@@ -1,35 +1,52 @@
 <header>
-
-
-
-      <nav>
-         <div>
-              <a class="logo" href="">Pet <span style="color: #d08128;font-weight:600 " >X</span></a>
-         </div>
+    <nav>
+        <div>
+            <a class="logo" href="{% url 'home' %}">Pet <span style="color: #d08128; font-weight:600;">X</span></a>
+        </div>
         <ul>
-          <li> <a href="{% url 'home' %}">Home</a></li>
-          <li> <a href="{% url 'about' %}">About</a></li>
-          <li> <a href="{% url 'product' %}">Product </a></li>
-          <li> <a href="{% url 'contact' %}">Contact </a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'product' %}">Product</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
 
-
-
-         <div class="btn-login">
-          <a  class="login-a" href="">Sign Up</a>
-           <a href="#"><button id="loginBtn" class="btn-2">Sign in</button></a>
-         </div>
-
-
- </nav>
-    
-
-
-
-
+        <div class="btn-login">
+            {% if user.is_authenticated %}
+                <span class="welcome-message">Welcome,   {{ user.username }}</span>
+                <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-2">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <button class="btn-2">Sign in</button>
+                </a>
+                <a href="{% url 'signup' %}">
+                    <button class="btn-2">Sign Up</button>
+                </a>
+            {% endif %}
+        </div>
+    </nav>
 </header>
 
+<style>
 
 
 
 
+    .btn-login {
+        display: flex;
+        align-items: center;
+    }
+
+    .welcome-message {
+        margin-right: 5px;
+        font-weight: medium;
+        color: white;
+       font-size: 21px;
+       font-family: Tahoma;
+       cursor:pointer;
+    }
+
+
+</style>

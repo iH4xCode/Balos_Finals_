@@ -1,10 +1,138 @@
 {% extends 'app/base.html' %}
+{% load static %}
 {% block content %}
-<div class="product-detail">
-    <h1>{{ product.name }}</h1>
-    <p>Description: {{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
-    <p>Stock: {{ product.stock }}</p>
-    <a href="{% url 'product' %}">Back to Products</a>
+<div class="product-detail-container">
+    <div class="product-header">
+        <h1>{{ product.name }}</h1>
+        <p class="price">$ {{ product.price }}</p>
+    </div>
+
+    <div class="product-info">
+        <div class="product-image">
+              <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-description">
+            <p><strong>Description:</strong> {{ product.description }}</p>
+            <p><strong>Stock:</strong> {{ product.stock }} items available</p>
+        </div>
+    </div>
+
+
+
+    <div class="back-link">
+        <a href="{% url 'product' %}" class="back-to-products">Back to Products</a>
+    </div>
 </div>
+
+<style>
+    .product-detail-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .product-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .product-header h1 {
+        font-size: 2.5rem;
+        color: #333;
+    }
+
+    .price {
+        font-size: 1.5rem;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    .product-info {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+
+    .product-image img {
+        max-width: 350px;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+    }
+
+    .product-description {
+        max-width: 600px;
+    }
+
+    .product-description p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .product-actions {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-add-to-cart {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn-add-to-cart:hover {
+        background-color: #218838;
+    }
+
+    .btn-edit, .btn-delete {
+        background-color: #ffc107;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .btn-edit:hover {
+        background-color: #e0a800;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+    }
+
+    .btn-delete:hover {
+        background-color: #c82333;
+    }
+
+    .back-link {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .back-to-products {
+        color: #007bff;
+        font-size: 1.2rem;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back-to-products:hover {
+        text-decoration: underline;
+    }
+</style>
 {% endblock content %}

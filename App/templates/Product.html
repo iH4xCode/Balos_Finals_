@@ -1,10 +1,66 @@
-<div class="product-list">
+{% extends 'App/base.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+
+<!-- Search Form -->
+<div style="max-width: 400px; margin: 20px auto; text-align: center;">
+    <form method="get" action="{% url 'product-list' %}" style="display: flex; gap: 10px;">
+        <input type="text" name="q" placeholder="Search products..." style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; flex: 1;">
+        <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Search</button>
+    </form>
+</div>
+
+{% if user.is_staff %}
+<div style="max-width: 400px; margin: 20px auto; text-align: center;">
+    <a href="{% url 'product-create' %}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-size: 14px;">+ Create New Product</a>
+</div>
+{% endif %}
+
+<div class="product-list" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start;">
   {% for product in product_list %}
-    {% include 'product_entry.html' %}
-    <a href="{% url 'product-detail' product.id %}">View Details</a>
-    <a href="{% url 'product-update' product.id %}">Edit</a>
-    <a href="{% url 'product-delete' product.id %}">Delete</a>
+    <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; width: 230px; text-align: center; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; cursor: pointer;">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}"
+           style="width: 180px; height: 180px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; transition: transform 0.3s ease-in-out;">
+      <h3 style="margin: 15px 0; font-size: 18px; font-weight: 600; color: #333;">{{ product.name }}</h3>
+      <p style="font-size: 14px; color: #777;">{{ product.description|truncatechars:50 }}</p>
+
+      <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
+        <a href="{% url 'product-detail' product.id %}" style="text-decoration: none; color: #fff; background-color: #007bff; padding: 8px 16px; border-radius: 5px; font-size: 14px; cursor: pointer; transition: background-color 0.3s;">View Details</a>
+
+        {% if user.is_staff %}
+        <a href="{% url 'product-update' product.id %}" style="text-decoration: none; color: #fff; background-color: #ffc107; padding: 8px 16px; border-radius: 5px; font-size: 14px; cursor: pointer; transition: background-color 0.3s;">Edit</a>
+        <a href="{% url 'product-delete' product.id %}" style="text-decoration: none; color: #fff; background-color: #dc3545; padding: 8px 16px; border-radius: 5px; font-size: 14px; cursor: pointer; transition: background-color 0.3s;">Delete</a>
+        {% endif %}
+
+        {% if not user.is_staff %}
+        <a href="{% url 'add-to-cart' product.id %}" style="text-decoration: none; color: #fff; background-color: #28a745; padding: 8px 16px; border-radius: 5px; font-size: 14px; cursor: pointer; transition: background-color 0.3s;">Add to Cart</a>
+        {% endif %}
+
+      </div>
+    </div>
   {% empty %}
-    <p>No products available. <a href="{% url 'product-create' %}">Add a product</a></p>
+    <p>No products available.</p>
   {% endfor %}
 </div>
+
+<style>
+  .product-list div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+  .product-list img:hover {
+    transform: scale(1.05);
+  }
+  .product-list a:hover {
+    background-color: #0056b3;
+  }
+  .product-list a:nth-child(2):hover {
+    background-color: #e0a800;
+  }
+  .product-list a:nth-child(3):hover {
+    background-color: #c82333;
+  }
+</style>
+{% endblock content %}
